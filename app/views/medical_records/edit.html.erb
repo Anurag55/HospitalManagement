@@ -1,0 +1,36 @@
+<%= stylesheet_link_tag 'form' %>
+</br>
+<div id="form" class="jumbotron">
+  <p id="heading"> Register Here</p>
+<% form_for(@medical_record, :id => @medical_record.id, :html => {:class => "form"}) do |f| %>
+
+  <div class="form-group">
+    <%= f.label (:comments, "Comments", :class => 'label') %>
+    <%= f.text_field (:comments,  :required => true, :class => 'form-control') %>
+  </div>
+
+  <div class="form-group">
+    <%= f.label (:patient_condition, "Patient condition", :class => 'label') %>
+    <%= f.text_field (:patient_condition,  :required => true, :class => 'form-control') %>
+  </div>
+
+  <div class="form-group">
+    <%= f.label (:medication, "Medication", :class => 'label') %>
+    <%= f.text_field (:medication,  :required => true, :class => 'form-control') %>
+  </div>
+
+  <div class="form-group">
+    <%= f.label (:is_recommended, "Recommend", :class => 'label') %>
+    <%= f.check_box (:is_recommended) %>
+  </div>
+
+
+  <%= f.submit 'Create', :class => 'btn btn-large btn-primary' %>
+
+<% end %>
+</br></br></br>
+
+<div class="footer">
+<%= link_to "Go back", show_appointments_doctors_path %>|<%= link_to "Go-to Home", doctors_path %>
+</div>
+</div>

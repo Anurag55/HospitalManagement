@@ -1,0 +1,38 @@
+<%= stylesheet_link_tag 'admin' %>
+<div id="container" class="jumbotron">
+
+</br></br>
+
+
+<table id="table" class="table table-striped">
+<thead>
+  <tr>
+
+  <th>Bed number </th>
+  <th> Admitted date </th>
+  <th> Admitted time </th>
+  <th> Patient Name </th>
+
+
+
+</tr>
+</thead>
+<tbody>
+
+    <tr>
+      <td><%= h @bed.number %></td>
+      <td><%= h @admit.date %></td>
+      <td><%= h @admit.time.strftime("%H:%M") %></td>
+      <td><%= h @patient.first_name %></td>
+
+    </tr>
+
+
+</tbody>
+</table>
+
+</br></br></br>
+<div class="footer">
+<%= link_to "Go back", @room %>|<%= link_to "Go-to Home", admins_path %>
+</div>
+</div>

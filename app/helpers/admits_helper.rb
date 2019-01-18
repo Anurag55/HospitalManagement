@@ -1,0 +1,2 @@
+module AdmitsHelper
+end

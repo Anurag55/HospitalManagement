@@ -1,0 +1,46 @@
+<%= stylesheet_link_tag 'form' %>
+</br>
+
+<div id="form" class="jumbotron">
+<p id="heading">Create timeslots</p>
+
+<!-- <%= select :timeslot, :doctor_id, options_for_select(@department.map {|d| [d.name,d.id]}), {:include_blank=>"Department",:selected=>@department.try(:id).to_i},
+    {:onChange => "list_doctors()"} %> -->
+  <div class="form-group">
+    <label>Select Department</label>
+    <%= collection_select(:department, :id, Department.all, :id, :name, {:action => "create"}, { :onchange => "list_doctors(this.value);"})%>
+  </div>
+
+  <div id="available_doctors" class="form-group">
+    <!-- render _available_doctor.html.erb -->
+  </div>
+
+
+
+</br></br>
+<%= link_to 'Go-Back', admins_path, :class => "link" %>
+
+
+</div>
+
+
+
+<script>
+  var j = jQuery.noConflict()
+function list_doctors(value){
+
+
+  j.ajax({
+           type: 'get',
+           url: "/timeslots/list_doctors",
+           data: {
+               department_id: value
+
+           },
+           //success: function(data){}
+
+       })
+  }
+
+
+</script>

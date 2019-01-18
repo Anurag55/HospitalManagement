@@ -1,0 +1,42 @@
+<%= stylesheet_link_tag 'admin' %>
+<div id="container" class="jumbotron">
+<%= link_to "Add new Room", new_room_path %></br>
+<a href="http://localhost:3000/rooms.csv">Get csv report</a>
+
+</br></br>
+
+
+<table id="table" class="table table-striped">
+<thead>
+  <tr>
+
+  <th> Number </th>
+  <th> No of beds </th>
+
+
+
+</tr>
+</thead>
+<tbody>
+<% @rooms.each do |room| %>
+
+    <tr>
+      <td><%= h room.number %></td>
+      <td><%= h room.no_of_beds %></td>
+      <td><%= link_to "View", room %></td>
+      <td><%= link_to "edit", edit_room_path(room) %></td>
+      <td><%= link_to "delete", room, :method => :delete %></td>
+
+
+    </tr>
+
+<% end %>
+
+</tbody>
+</table>
+
+</br></br></br>
+<div class="footer">
+<%= link_to "Go back", admins_path %>|<%= link_to "Go-to Home", admins_path %>
+</div>
+</div>

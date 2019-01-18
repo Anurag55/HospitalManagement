@@ -1,0 +1,43 @@
+<%= stylesheet_link_tag 'form' %>
+</br>
+<div id="form" class="jumbotron">
+<p id="heading"> Create your profile</p>
+<% form_for(@patient, :html => {:class => "form"}) do |f| %>
+
+  <div class="form-group">
+    <%= f.label (:first_name, "First Name") %>
+    <%= f.text_field (:first_name, :class => 'form-control') %>
+  </div>
+  <div class="form-group">
+    <%= f.label (:middle_name, "Middle Name") %>
+    <%= f.text_field (:middle_name, :class => 'form-control') %>
+  </div>
+  <div class="form-group">
+    <%= f.label (:last_name, "Last Name") %>
+    <%= f.text_field (:last_name, :class => 'form-control') %>
+  </div>
+  <div class="form-group">
+    <%= f.label (:date_of_birth, "Date of Birth") %>
+    <%= date_select("patient", "date_of_birth", :start_year => 1900) %>
+  </div>
+  <div class="form-group">
+    <%= f.label (:address, "Address") %>
+    <%= f.text_field (:address, :class => 'form-control') %>
+  </div>
+  <div class="form-group">
+    <%= f.label(:gender, "Gender") %>
+    <%= f.select :gender, options_for_select(User::GENDER.values), :include_blank => true %>
+  </div>
+  <div class="form-group">
+    <%= f.label (:blood_group, "Blood group") %>
+    <%= f.collection_select :blood_group_id, BloodGroup.all, :id, :name, :include_blank => true, :class => 'form-control' %>
+  </div>
+  <!-- <div class="form-group">
+    <%= f.label (:photo, "Photo") %>
+    <%= f.text_field (:photo, :class => 'form-control') %>
+  </div> -->
+
+  <%= f.submit 'Register', :class => 'btn btn-large btn-primary' %>
+
+<% end %>
+</div>

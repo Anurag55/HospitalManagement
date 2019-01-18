@@ -1,0 +1,46 @@
+<%= stylesheet_link_tag 'admin' %>
+
+<div id="container" class="jumbotron">
+<%= link_to "Add new Doctor", {:controller => "users", :action => "new", :is_doctor => 1} %></br></br>
+<table id="table" class="table table-striped">
+<thead>
+<tr>
+  <th scope="col"> First Name </th>
+  <th scope="col"> Middle Name </th>
+  <th scope="col"> Last Name </th>
+
+  <th scope="col"> Date of Birth </th>
+  <th scope="col"> Address </th>
+  <th scope="col"> Nationality </th>
+  <th scope="col"> Gender </th>
+  <th scope="col"> Qualification </th>
+  <th scope="col"> Experience </th>
+</tr>
+</thead>
+<tbody>
+<% @doctors.each do |doctor| %>
+
+    <tr>
+      <td><%= h doctor.first_name %></td>
+      <td><%= h doctor.middle_name%></td>
+      <td><%= h doctor.last_name%></td>
+      <td><%= h doctor.date_of_birth%></td>
+      <td><%= h doctor.address%></td>
+      <td><%= h Country.find(doctor.nationality_id).name%></td>
+      <td><%= h doctor.gender%></td>
+      <td><%= h doctor.qualification%></td>
+      <td><%= h doctor.experience%></th>
+
+    </tr>
+
+<% end %>
+
+</tbody>
+</table>
+
+
+</br></br></br>
+<div class="footer">
+<%= link_to "Go back", admins_path %>|<%= link_to "Go-to Home", admins_path %>
+</div>
+</div>

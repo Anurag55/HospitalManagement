@@ -1,0 +1,32 @@
+
+<%= stylesheet_link_tag 'form' %>
+</br>
+<div id="form" class="jumbotron">
+  <p id="heading"> Register Here</p>
+  <% form_for(@user, :html => { :multipart => true }) do |f| %>
+    <%= f.error_messages %>
+    <%= f.hidden_field :confirmed  %>
+    <%= f.hidden_field :is_doctor, :value => params[:is_doctor]  %>
+    <div class="form-group">
+        <%= f.label(:email, "E-mail") %>
+        <%= f.text_field(:email, :class => 'form-control') %>
+    </div>
+    <div class="form-group">
+      <%= f.label(:username, "Username") %>
+      <%= f.text_field(:username, :class => 'form-control') %>
+    </div>
+    <div class="form-group">
+      <%= f.label(:contact_number, "Contact Number") %>
+      <%= f.text_field(:contact_number, :class => 'form-control') %>
+    </div>
+    <div class="form-group">
+      <%= f.label(:avatar, "Profile Photo") %></br>
+      <%= f.file_field :avatar %>
+    </div></br>
+    <%= f.submit 'Register', :class => 'btn btn-large btn-primary' %>
+  <% end %>
+</br>
+</br>
+<%= link_to 'Go-Back', {:controller => "sessions", :action => "new" }, :class => "link" %>
+
+</div>

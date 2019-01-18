@@ -1,0 +1,39 @@
+<%= stylesheet_link_tag 'admin' %>
+<div id="container" class="jumbotron">
+</br></br>
+
+  <table id="table" class="table table-striped">
+  <thead>
+    <tr>
+
+    <th> Number </th>
+    <th> Date </th>
+    <th> Time </th>
+    <th> Allocation Status </th>
+  </tr>
+
+  </thead>
+  <tbody>
+  <% @slots.each do |slot| %>
+
+      <tr>
+        <td><%= h slot.number %></td>
+        <td><%= h slot.date %></td>
+        <td><%= h slot.time.strftime("%H:%M") %></td>
+        <% if slot.is_allocated==1  %>
+          <td>Allocated</td>
+        <% else %>
+          <td>Free</td>
+        <% end %>
+      </tr>
+
+  <% end %>
+
+  </tbody>
+  </table>
+
+</br></br></br>
+<div class="footer">
+<%= link_to "Go back", timeslots_path %>|<%= link_to "Go-to Home", admins_path %>
+</div>
+</div>

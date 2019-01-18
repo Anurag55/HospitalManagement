@@ -1,0 +1,39 @@
+<%= stylesheet_link_tag 'admin' %>
+<div id="container" class="jumbotron">
+
+<table id="table" class="table table-striped">
+<thead>
+<tr>
+  <th> First Name </th>
+  <th> Middle Name </th>
+  <th> Last Name </th>
+  <th> Date of Birth </th>
+  <th> Address </th>
+  <th> Gender </th>
+  <th> Blood Group </th>
+</tr>
+</thead>
+<tbody>
+<% @patients.each do |patient| %>
+    <tr>
+      <td><%= h patient.first_name %></td>
+      <td><%= h patient.middle_name%></td>
+      <td><%= h patient.last_name%></td>
+      <td><%= h patient.date_of_birth%></td>
+      <td><%= h patient.address%></td>
+      <td><%= h patient.gender%></td>
+      <td><%= h BloodGroup.find(patient.blood_group_id).name%></td>
+
+
+    </tr>
+
+<% end %>
+
+</tbody>
+</table>
+
+</br></br></br>
+<div class="footer">
+<%= link_to "Go back", doctors_path %>|<%= link_to "Go-to Home", doctors_path %>
+</div>
+</div>

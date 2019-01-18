@@ -1,0 +1,52 @@
+#body{
+    margin: auto;
+    background-color: #CBC7E5;
+}
+
+
+.topnav {
+  overflow: hidden;
+  background-color: #e0e0e0;
+  margin: auto;
+}
+
+.home_icon{
+  float: left;
+  font-size: 30px;
+  margin-left: 30px;
+  margin-top: 5px;
+  font-style: italic;
+  font-family: fantasy;
+  text-decoration: none;
+  color: green;
+}
+
+.topnav .link {
+  float: right;
+  color: #9ba500;
+  text-align: center;
+  padding: 14px 30px;
+  text-decoration: none;
+  font-size: 17px;
+}
+
+.topnav .link:hover {
+  background-color: #ddd;
+  color: black;
+}
+
+
+.link{
+  text-decoration: none;
+  cursor: pointer;
+
+}
+.footer_link{
+  text-align: center;
+  margin: auto;
+
+}
+
+.footer{
+  text-align: center;
+}

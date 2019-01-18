@@ -1,0 +1,17 @@
+<%= stylesheet_link_tag 'form' %>
+</br>
+<div id="form" class="jumbotron">
+  <p id="heading"> Edit Room</p>
+  <% form_for(@room, :html => {:class => "form"}) do |f| %>
+    <div class="form-group">
+      <%= f.label (:number, "Number") %>
+      <%= f.text_field (:number, :class => 'form-control') %>
+    </div>
+    <%= f.submit 'Create', :class => 'btn btn-large btn-primary' %>
+
+  <% end %>
+</br></br>
+<div class="footer">
+<%= link_to "Go back", rooms_path %>|<%= link_to "Go-to Home", doctors_path %>
+</div>
+</div>

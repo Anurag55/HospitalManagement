@@ -1,0 +1,27 @@
+<%= stylesheet_link_tag 'doctor' %>
+</br>
+<div class="container">
+  <div id="content" class="jumbotron">
+
+    <div class="row">
+      <div class="col-md-3">
+        <div class="thumbnail">
+            <%= link_to image_tag("profile.png"), show_profile_patients_path %>
+            <div class="caption">
+              <p>Profile</p>
+            </div>
+        </div>
+      </div>
+      <div class="col-md-3">
+        <div class="thumbnail">
+            <%= link_to image_tag("appointments.png"), show_appointments_patients_path %>
+            <div class="caption">
+              <p>Appointments</p>
+            </div>
+        </div>
+      </div>
+    </div>
+
+
+  </div>
+</div>

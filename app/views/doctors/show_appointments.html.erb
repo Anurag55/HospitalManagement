@@ -1,0 +1,45 @@
+<%= stylesheet_link_tag 'doctor' %>
+<div id="container" class="jumbotron">
+
+<% if @appointments.present? %>
+
+  <table id="table" class="table table-striped">
+  <thead>
+    <tr>
+
+    <th> Number </th>
+    <th> Patient </th>
+    <th> Date </th>
+    <th> Time </th>
+
+  </tr>
+  </thead>
+  <tbody>
+  <% @appointments.each do |appointment| %>
+
+      <tr>
+        <td><%= h appointment.id %></td>
+        <td><%= h appointment.patient.first_name %></td>
+        <td><%= h appointment.time.to_date %></td>
+        <td><%= h appointment.time.strftime("%H:%M") %></td>
+
+        <% if MedicalRecord.find(:all, :conditions =>{:appointment_id => appointment.id}).present?  %>
+          <td> <%= link_to "update medical record",:controller => "medical_records",:action => "edit",:id => appointment.medical_record.id %> </td>
+        <% else %>
+          <td> <%= link_to "create medical record",:controller => "medical_records",:action => "new",:id => appointment.id %> </td>
+        <% end %>
+
+      </tr>
+
+  <% end %>
+
+  </tbody>
+  </table>
+<% else %>
+    <h4 class="footer"> No appointments Listed </h4>
+<% end %>
+</br></br></br>
+<div class="footer">
+<%= link_to "Go back", doctors_path %>|<%= link_to "Go-to Home", doctors_path %>
+</div>
+</div>

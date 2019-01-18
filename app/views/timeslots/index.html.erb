@@ -1,0 +1,50 @@
+
+<%= stylesheet_link_tag 'admin' %>
+<div id="container" class="jumbotron">
+
+<%= link_to "create timeslot", new_timeslot_path %>
+</br></br>
+
+
+<table id="table" class="table table-striped">
+<thead>
+  <tr>
+
+  <th> Number </th>
+  <th> Date </th>
+  <th> start Time </th>
+  <th> end Time </th>
+  <th> Slot duration </th>
+  <th> Doctor </th>
+  <th> Department </th>
+
+
+
+</tr>
+</thead>
+<tbody>
+<% @timeslots.each do |timeslot| %>
+
+    <tr>
+      <td><%= h timeslot.id %></td>
+      <td><%= h timeslot.date %></td>
+      <td><%= h timeslot.start_time %></td>
+      <td><%= h timeslot.end_time %></td>
+      <td><%= h timeslot.slot_width %></td>
+      <td><%= h timeslot.doctor.first_name %></td>
+      <td><%= h timeslot.doctor.department.name %></td>
+      <td><%= link_to "View", timeslot %></td>
+
+
+    </tr>
+
+<% end %>
+
+</tbody>
+</table>
+
+</br></br></br>
+<div class="footer">
+<%= link_to "Go back", admins_path %>|<%= link_to "Go-to Home", admins_path %>
+</div>
+</div>

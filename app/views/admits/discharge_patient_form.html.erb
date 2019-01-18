@@ -1,0 +1,39 @@
+<%= stylesheet_link_tag 'admin' %>
+<div id="container" class="jumbotron">
+
+<table id="table" class="table table-striped">
+<thead>
+  <tr>
+
+  <th> Number </th>
+  <th> Date </th>
+  <th> Time </th>
+  <th> Bed </th>
+  <th> Doctor </th>
+  <th> Department </th>
+
+</tr>
+</thead>
+<tbody>
+<% @admits.each do |admit| %>
+
+    <tr>
+      <td><%= h admit.id %></td>
+      <td><%= h admit.date %></td>
+      <td><%= h admit.time %></td>
+      <td><%= h admit.bed.number %></td>
+      <td><%= h admit.appointment.doctor.first_name %></td>
+      <td><%= h admit.appointment.doctor.department.name %></td>
+      <td><%= link_to "Discharge", {:controller => "records", :action => "new", :id => admit.id} %></td>
+    </tr>
+
+<% end %>
+
+</tbody>
+</table>
+
+</br></br></br>
+<div class="footer">
+<%= link_to "Go back", show_patientrecords_admins_path %>|<%= link_to "Go-to Home", admins_path %>
+</div>
+</div>

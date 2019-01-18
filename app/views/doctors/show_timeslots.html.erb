@@ -1,0 +1,40 @@
+<%= stylesheet_link_tag 'doctor' %>
+<div id="container" class="jumbotron">
+
+<table id="table" class="table table-striped">
+<thead>
+  <tr>
+
+  <th> Number </th>
+  <th> Date </th>
+  <th> start Time </th>
+  <th> end Time </th>
+  <th> Slot duration </th>
+
+
+
+</tr>
+</thead>
+<tbody>
+<% @timeslots.each do |timeslot| %>
+
+    <tr>
+      <td><%= h timeslot.id %></td>
+      <td><%= h timeslot.date %></td>
+      <td><%= h timeslot.start_time %></td>
+      <td><%= h timeslot.end_time %></td>
+      <td><%= h timeslot.slot_width %></td>
+      <td><%= link_to "view slots",{:action => "show_slots", :id => timeslot.id} %></td>
+
+    </tr>
+
+<% end %>
+
+</tbody>
+</table>
+
+</br></br></br>
+<div class="footer">
+<%= link_to "Go back", doctors_path %>|<%= link_to "Go-to Home", doctors_path %>
+</div>
+</div>

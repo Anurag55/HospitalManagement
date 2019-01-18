@@ -1,0 +1,25 @@
+<%= stylesheet_link_tag 'form' %>
+<%= stylesheet_link_tag 'admin' %>
+
+</br>
+<div id="form" class="jumbotron">
+  <p id="heading"> Create Room</p>
+  <% form_for([@room,@bed], :html => {:class => "form"}) do |f| %>
+    <%= f.error_messages %>
+    <div class="form-group">
+      <%= f.label (:number, "Number") %>
+      <%= f.text_field (:number, :class => 'form-control') %>
+    </div>
+    <div class="form-group">
+      <%= f.label (:is_allocated, "Allocate", :class => 'label') %>
+      <%= f.check_box (:is_allocated) %>
+    </div>
+
+    <%= f.submit 'Create', :class => 'btn btn-large btn-primary' %>
+
+  <% end %>
+</br></br>
+<div class="footer">
+<%= link_to "Go back", @room %>|<%= link_to "Go-to Home", admins_path %>
+</div>
+</div>

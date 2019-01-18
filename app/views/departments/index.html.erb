@@ -1,0 +1,38 @@
+<%= stylesheet_link_tag 'admin' %>
+<div id="container" class="jumbotron">
+<%= link_to "Add new department", new_department_path %>
+
+</br></br>
+
+
+<table id="table" class="table table-striped">
+<thead>
+  <tr>
+
+  <th> Number </th>
+  <th> Name </th>
+  <th> Description </th>
+
+
+</tr>
+</thead>
+<tbody>
+<% @departments.each do |department| %>
+
+    <tr>
+      <td><%= h department.id %></td>
+      <td><%= h department.name %></td>
+      <td><%= h department.details %></td>
+
+    </tr>
+
+<% end %>
+
+</tbody>
+</table>
+
+</br></br></br>
+<div class="footer">
+<%= link_to "Go back", admins_path %>|<%= link_to "Go-to Home", admins_path %>
+</div>
+</div>

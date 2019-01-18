@@ -1,0 +1,52 @@
+<%= stylesheet_link_tag 'form' %>
+</br>
+
+<div id="form" class="jumbotron">
+<p id="heading">Assign bed</p>
+<% form_tag({:controller => "admits", :action => "create"}) do -%>
+
+<%= hidden_field_tag :record_id, params[:record_id] %>
+
+<div class="form-group">
+  <label>Select Room</label>
+  <%= collection_select(:room, :id, Room.all, :id, :number, {:prompt => "select Room"}, { :onchange => "list_beds(this.value);" })%>
+</div>
+
+<div id="available_beds" class="form-group">
+  <!-- render _available_beds.html.erb -->
+</div>
+
+<% end %>
+</br></br>
+<div class="footer">
+<%= link_to "Go back", show_patientrecords_admins_path %>|<%= link_to "Go-to Home", admins_path %>
+</div>
+</div>
+
+
+
+
+
+
+
+
+
+<script>
+  var j = jQuery.noConflict()
+function list_beds(value){
+
+
+  j.ajax({
+           type: 'get',
+           url: "/admits/list_beds",
+           data: {
+               room_id: value
+
+           },
+           //success: function(data){}
+
+       })
+  }
+
+
+</script>

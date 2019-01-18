@@ -1,0 +1,41 @@
+<%= stylesheet_link_tag 'admin' %>
+<div id="container" class="jumbotron">
+
+<table id="table" class="table table-striped">
+<thead>
+  <tr>
+
+  <th> Number </th>
+  <th> Patient </th>
+  <th> Date </th>
+  <th> Time </th>
+  <th> Doctor </th>
+  <th> Department </th>
+
+</tr>
+</thead>
+<tbody>
+<% @appointments.each do |appointment| %>
+
+    <tr>
+      <td><%= h appointment.id %></td>
+      <% @patient = Patient.find(appointment.patient_id) %>
+      <td><%= h @patient.first_name %></td>
+      <td><%= h appointment.time.to_date %></td>
+      <td><%= h appointment.time.strftime("%H:%M") %></td>
+      <% @doctor = Doctor.find(appointment.doctor_id) %>
+      <% @department = Department.find(@doctor.department_id) %>
+      <td><%= h @doctor.first_name %></td>
+      <td><%= h @department.name %></td>
+    </tr>
+
+<% end %>
+
+</tbody>
+</table>
+
+</br></br></br>
+<div class="footer">
+<%= link_to "Go back", admins_path %>|<%= link_to "Go-to Home", admins_path %>
+</div>
+</div>

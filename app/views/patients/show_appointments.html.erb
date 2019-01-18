@@ -1,0 +1,52 @@
+<%= stylesheet_link_tag 'patient' %>
+<div id="container" class="jumbotron">
+
+<%= link_to "Take an appointment", get_appointments_patients_path %>
+</br></br>
+
+<% if @appointments.present? %>
+
+  <table id="table" class="table table-striped">
+  <thead>
+    <tr>
+
+    <th> Number </th>
+    <th> Date </th>
+    <th> Time </th>
+    <th> Doctor </th>
+    <th> Department </th>
+
+
+  </tr>
+  </thead>
+  <tbody>
+  <% @appointments.each do |appointment| %>
+
+      <tr>
+        <td><%= h appointment.id %></td>
+        <td><%= h appointment.time.to_date %></td>
+        <td><%= h appointment.time.strftime("%H:%M") %></td>
+        <% @doctor=Doctor.find(appointment.doctor_id) %>
+        <td><%= h @doctor.first_name %></td>
+        <td><%= h Department.find(@doctor.department_id).name %></td>
+        <% if appointment.record.present? %>
+          <% record=appointment.record %>
+          <td> <%= link_to "Download discharge report", record.file.url(:original, false) %> </td>
+        <% end %>
+
+
+      </tr>
+
+      <% end %>
+
+      </tbody>
+      </table>
+<% else %>
+        <h4 class="footer"> No appointments Taken </h4>
+<% end %>
+</br></br></br>
+</br></br></br>
+<div class="footer">
+<%= link_to "Go back", patients_path %>|<%= link_to "Go-to Home", patients_path %>
+</div>
+</div>

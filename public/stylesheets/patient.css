@@ -1,0 +1,38 @@
+
+#table{
+  margin: auto;
+}
+
+#container{
+  margin-top: 20px;
+}
+
+.footer{
+  text-align: center;
+}
+
+.unavailable{
+  font-size: 25px;
+  text-align: center;
+  color: red;
+  font-family: monospace;
+}
+
+.slots{
+  margin-top: 20px;
+  width: 800px;
+  margin: auto;
+}
+.date{
+  font-size: 16px;
+  color: green
+}
+.time{
+  font-size: 14px;
+  color: red
+}
+
+.doctor{
+  font-size: 18px;
+  color: black;
+}

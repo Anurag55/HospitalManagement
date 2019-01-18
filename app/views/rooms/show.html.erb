@@ -1,0 +1,52 @@
+<%= stylesheet_link_tag 'admin' %>
+<div id="container" class="jumbotron">
+  <%= link_to "Create bed", new_room_bed_path(@room), :class => "link" %>
+
+</br></br>
+
+
+<table id="table" class="table table-striped">
+<thead>
+  <tr>
+
+  <th> Number </th>
+  <th>Bed number </th>
+  <th> Allocation Status </th>
+  <th> Allocation Details </th>
+
+
+
+</tr>
+</thead>
+<tbody>
+<% @room.beds.each do |bed| %>
+
+    <tr>
+      <td><%= h bed.id %></td>
+      <td><%= h bed.number %></td>
+      <% if bed.is_allocated==1 %>
+        <td> Allocated </td>
+      <% else %>
+        <td> Free </td>
+      <% end %>
+      <% if bed.is_allocated==1 %>
+        <td><%= link_to "view", :controller => "beds", :action => "show", :id => bed.id %></td>
+      <% else %>
+        <td></td>
+      <% end %>
+      <td><%= link_to "edit", edit_room_bed_path(@room,bed) %></td>
+      <td><%= link_to "delete", room_bed_path(@room,bed), :method => :delete %></td>
+
+
+    </tr>
+
+<% end %>
+
+</tbody>
+</table>
+
+</br></br></br>
+<div class="footer">
+<%= link_to "Go back", rooms_path %>|<%= link_to "Go-to Home", admins_path %>
+</div>
+</div>

@@ -1,0 +1,39 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+       "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <meta http-equiv="content-type" content="text/html;charset=UTF-8" />
+  <title><%= controller.action_name %></title>
+  <%= stylesheet_link_tag 'application' %>
+  <%= stylesheet_link_tag 'bootstrap' %>
+
+  <%= javascript_include_tag :all %>
+
+
+</head>
+<body id="body">
+
+<p style="color: green"><%= notice %></p>
+
+  <div class="topnav">
+    <%= link_to "ABC HOSPITAL", { :controller => "sessions", :action => "new" } ,{ :class => "home_icon" } %>
+      <% if session[:current_user_id] == nil %>
+        <%= link_to 'Sign in', {:controller => "sessions", :action => "new"}, :class => "link" %>
+        <%= link_to 'Sign Up', {:controller => "users",:action => "new", :is_doctor => 0} , :class => "link" %>
+      <% else %>
+
+        <%= link_to 'Logout', {:controller => "sessions", :action => "logout"}, :class => "link" %>
+        <%= link_to 'Change Password', {:controller => "sessions", :action => "change_password_form"}, :class => "link" %>
+      <% end %>
+  </div>
+<div id="content">
+
+<%= yield %>
+
+</div>
+
+<div class="fixed-bottom footer">Copyright @ 01:01:01 and Date AS 1995–2019. All rights reserved </div>
+
+</body>
+</html>

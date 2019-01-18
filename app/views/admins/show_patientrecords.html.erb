@@ -1,0 +1,68 @@
+<%= stylesheet_link_tag 'admin' %>
+<div id="container" class="jumbotron">
+<% if Admit.all.present? %>
+  <%= link_to "Discharge Patient", discharge_patient_form_admits_path %>
+<% end %>
+</br>
+</br>
+
+<% if @medical_records.present? %>
+  <table id="table" class="table table-striped">
+  <thead>
+    <tr>
+
+    <th> Number </th>
+    <th> Appointment Number </th>
+    <th> Patient </th>
+    <th> Comments </th>
+    <th> Condition </th>
+    <th> Medication </th>
+    <th> Recommended to admit </th>
+
+  </tr>
+  </thead>
+  <tbody>
+  <% @medical_records.each do |record| %>
+
+      <tr>
+        <td><%= h record.id %></td>
+        <% @appointment= record.appointment %>
+        <td><%= h record.appointment.id %></td>
+        <td><%= h record.appointment.patient.first_name %></td>
+        <td><%= h record.comments %></td>
+        <td><%= h record.patient_condition %></td>
+        <td><%= h record.medication %></td>
+        <% if record.is_recommended==1 %>
+          <td> Yes </td>
+        <% else %>
+          <td> No </td>
+        <% end %>
+
+        <% if record.is_recommended==0  %>
+
+        <% elsif record.is_admitted == 0 %>
+          <td> <%= link_to "Assign Bed",:controller => "admits",:action => "new",:record_id => record.id %> </td>
+        <% else %>
+          <td> Bed assigned </td>
+        <% end %>
+
+        <% if record.appointment.admit.present? %>
+          <% if record.appointment.admit.is_discharged==1 %>
+              <td> Discharged </td>
+          <%end %>
+        <% end %>
+
+      </tr>
+
+  <% end %>
+
+  </tbody>
+  </table>
+<% else %>
+  <h4 class="footer"> No Patient records created </h4>
+<% end %>
+</br></br></br>
+<div class="footer">
+<%= link_to "Go back", admins_path %>|<%= link_to "Go-to Home", admins_path %>
+</div>
+</div>

@@ -1,0 +1,18 @@
+<%= stylesheet_link_tag 'form' %>
+</br>
+<div id="form" class="jumbotron">
+  <p id="heading"> Register Here</p>
+  <% form_for(@record, :html => { :multipart => true }) do |f| %>
+    <%= f.error_messages %>
+    <%= f.hidden_field :appointment_id, :value=> @admit.appointment.id %>
+    <div class="form-group">
+      <%= f.file_field :file %>
+    </div>
+
+    <%= f.submit 'Submit', :class => 'btn btn-large btn-primary' %>
+  <% end %>
+</br>
+</br>
+<%= link_to 'Go-Back', admins_path, :class => "link" %>
+
+</div>

@@ -1,0 +1,16 @@
+#form{
+  width: 700px;
+  margin: auto;
+}
+
+#heading{
+  text-align: center;
+  font-size: 22px;
+  font-family: sans-serif;
+  font-weight: bold;
+}
+
+#content{
+  width: 700px;
+  margin: auto;
+}
