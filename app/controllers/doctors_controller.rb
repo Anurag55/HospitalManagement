@@ -26,17 +26,27 @@ class DoctorsController < ApplicationController
   end
 
   def edit
-    @doctor=Doctor.find(current_user.profile_id)
+    @doctor=Doctor.find(params[:id])
   end
 
   def update
-    @doctor=Doctor.find(current_user.profile_id)
+    @doctor=Doctor.find(params[:id])
     if @doctor.update_attributes(params[:doctor])
       flash[:notice] = "Profile Successfully updated..."
     else
       flash[:notice] = "Profile could not updated, Try again..."
     end
-    redirect_to show_profile_doctors_path
+    redirect_to :controller => "sessions", :action => "new"
+  end
+
+  def destroy
+    @doctor=Doctor.find(params[:id])
+    if @doctor.destroy
+      flash[:message] = "Doctor deleted"
+    else
+      flash[:message] = "Cant destroy doctor, Try again.."
+    end
+    redirect_to show_doctors_admins_path
   end
 
   def show_profile

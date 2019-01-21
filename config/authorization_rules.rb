@@ -6,10 +6,12 @@ authorization do
     has_permission_on :admits, :to=>[:index, :new, :create, :discharge_patient_form, :list_beds]
     has_permission_on :rooms,   :to=>[:index, :new, :create, :show, :edit, :update, :destroy]
     has_permission_on :beds,   :to=>[:index, :new, :create, :show, :edit, :update, :destroy]
-    has_permission_on :departments, :to=>[:index, :new, :create]
+    has_permission_on :departments, :to=>[:index, :new, :create, :destroy]
     has_permission_on :records, :to=> [:new, :create]
     has_permission_on :timeslots,   :to=>[:index, :new, :create, :show, :list_doctors]
     has_permission_on :users, :to=>[:new, :create]
+    has_permission_on :doctors, :to=>[:edit , :update, :destroy]
+    has_permission_on :patients, :to=>[:edit , :update, :destroy]
   end
 
   role :patient do

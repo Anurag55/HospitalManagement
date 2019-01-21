@@ -24,6 +24,8 @@
       <td><%= patient.address%></td>
       <td><%=patient.gender%></td>
       <td><%=BloodGroup.find(patient.blood_group_id).name%></td>
+      <td><%= link_to "Edit", edit_patient_path(patient) %></td>
+      <td><%= link_to "Delete" , patient, :confirm => 'Are you sure?', :method => :delete %></td>
     </tr>
 
 <% end %>

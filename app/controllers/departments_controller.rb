@@ -21,5 +21,14 @@ class DepartmentsController < ApplicationController
     end
   end
 
-  
+  def destroy
+    @department=Department.find(params[:id])
+    if @department.destroy
+      flash[:notice] = "Deartment deleted"
+    else
+      flash[:notice] = "Couldnt delete department, Try again..."
+    end
+    redirect_to departments_path
+  end
+
 end

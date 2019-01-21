@@ -12,7 +12,6 @@ class AdmitsController < ApplicationController
   end
 
   def create
-    @bed=Bed.find(params[:admit][:bed_id])
     @medical_record = MedicalRecord.find(params[:record_id])
     @admit= Admit.new(:date => params[:date], :time => params[:time], :bed_id => params[:admit][:bed_id], :appointment_id => @medical_record.appointment_id)
     if @admit.save

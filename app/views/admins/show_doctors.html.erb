@@ -30,6 +30,8 @@
       <td><%= h doctor.gender%></td>
       <td><%= h doctor.qualification%></td>
       <td><%= h doctor.experience%></th>
+      <td><%= link_to "Edit", edit_doctor_path(doctor) %></td>
+      <td><%= link_to "Delete" , doctor, :confirm => 'Are you sure?', :method => :delete %></td>
 
     </tr>
 

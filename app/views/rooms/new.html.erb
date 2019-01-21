@@ -3,6 +3,8 @@
 <div id="form" class="jumbotron">
   <p id="heading"> Create Room</p>
   <% form_for(@room, :html => {:class => "form"}) do |f| %>
+    <%= f.error_messages %>
+
     <div class="form-group">
       <%= f.label (:number, "Number") %>
       <%= f.text_field (:number, :class => 'form-control') %>

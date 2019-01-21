@@ -5,6 +5,7 @@
 <div id="form" class="jumbotron">
   <p id="heading"> Add department</p>
 <% form_for(@department, :html => {:class => "form"}) do |f| %>
+  <%= f.error_messages %>
   <div class="form-group">
     <%= f.label (:name, "Name") %>
     <%= f.text_field (:name, :class => 'form-control') %>

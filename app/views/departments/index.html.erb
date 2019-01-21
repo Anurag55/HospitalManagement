@@ -23,7 +23,7 @@
       <td><%= h department.id %></td>
       <td><%= h department.name %></td>
       <td><%= h department.details %></td>
-
+      <td><%= link_to "delete" , department, :confirm => 'Are you sure?', :method => :delete %></td>
     </tr>
 
 <% end %>

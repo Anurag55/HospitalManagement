@@ -26,17 +26,28 @@ class PatientsController < ApplicationController
   end
 
   def edit
-    @patient=Patient.find(current_user.profile_id)
+    @patient=Patient.find(params[:id])
   end
 
   def update
-    @patient=Patient.find(current_user.profile_id)
+    @patient=Patient.find(params[:id])
     if @patient.update_attributes(params[:patient])
       flash[:notice] = "Profile Successfully updated..."
     else
       flash[:notice] = "Profile could not updated, Try again..."
     end
-    redirect_to show_profile_patients_path
+    redirect_to :controller => "sessions", :action => "new"
+  end
+
+
+  def destroy
+    @patient=Patient.find(params[:id])
+    if @patient.destroy
+      flash[:message] = "Patient deleted"
+    else
+      flash[:message] = "Cant destroy patient, Try again.."
+    end
+    redirect_to show_patients_admins_path
   end
 
   def show_profile

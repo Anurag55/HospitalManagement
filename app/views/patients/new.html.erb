@@ -3,6 +3,7 @@
 <div id="form" class="jumbotron">
 <p id="heading"> Create your profile</p>
 <% form_for(@patient, :html => {:class => "form"}) do |f| %>
+  <%= f.error_messages %>
 
   <div class="form-group">
     <%= f.label (:first_name, "First Name") %>
