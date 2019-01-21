@@ -51,7 +51,8 @@ class PatientsController < ApplicationController
   end
 
   def show_profile
-    @patient=current_user.profile
+    @user=current_user
+    @patient=@user.profile
   end
 
   def show_appointments
@@ -65,7 +66,10 @@ class PatientsController < ApplicationController
 
   def show_slots
     @doctors= Department.find(params[:department][:id]).doctors
-    @timeslots = Timeslot.all(:conditions => {:date => Date.civil(*params["appointment"].sort.map(&:last).map(&:to_i)), :doctor_id => @doctors.collect(&:id)})
+    date = Date.new params[:appointment]["date(1i)"].to_i, params[:appointment]["date(2i)"].to_i, params[:appointment]["date(3i)"].to_i
+    if date >= Date.today
+      @timeslots = Timeslot.all(:conditions => {:date => Date.civil(*params["appointment"].sort.map(&:last).map(&:to_i)), :doctor_id => @doctors.collect(&:id)})
+    end
   end
 
 

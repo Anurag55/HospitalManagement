@@ -4,6 +4,7 @@
 <%= link_to "Update profile", edit_patient_path(@patient) %>
 </br></br>
 <%= image_tag @patient.user.avatar.url(:thumb), :class => "profile_image" %></br>
+<p class="text"><%= link_to "Change image", edit_user_path(@user) %></p></br>
 <span class="label">Name</span>
 <span class="value">
   <%= @patient.first_name %>

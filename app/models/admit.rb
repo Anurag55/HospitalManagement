@@ -6,9 +6,8 @@ class Admit < ActiveRecord::Base
   after_save :update_bed_and_record_statuses
 
   def update_bed_and_record_statuses
-    self.appointment.medical_record.update_attributes(:is_admitted => 1)
-    self.bed.update_attributes(:is_allocated => 1)
-
+    appointment.medical_record.update_attributes(:is_admitted => 1)
+    bed.update_attributes(:is_allocated => 1)
   end
 
 end

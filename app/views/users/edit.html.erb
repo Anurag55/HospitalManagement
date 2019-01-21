@@ -1,0 +1,18 @@
+<%= stylesheet_link_tag 'form' %>
+</br>
+<div id="form" class="jumbotron">
+  <p id="heading"> Register Here</p>
+  <% form_for(@user, :html => { :multipart => true }) do |f| %>
+    <%= f.error_messages %>
+
+    <div class="form-group">
+      <%= f.label(:avatar, "Profile Photo") %></br>
+      <%= f.file_field :avatar %>
+    </div></br>
+
+    <%= f.submit 'Register', :class => 'btn btn-large btn-primary' %>
+  <% end %>
+</br>
+</br>
+<%= link_to 'Go-Back', {:controller => "sessions", :action => "new" }, :class => "link" %>
+</div>

@@ -7,7 +7,6 @@ class Appointment < ActiveRecord::Base
   has_one :record
 
   validates_presence_of  :patient_id, :doctor_id, :slot_id
-
   validate :time_cannot_be_in_the_past
 
   after_save :set_slot_to_allocated, :deliver_appointment_email
@@ -22,7 +21,7 @@ class Appointment < ActiveRecord::Base
   end
 
   def set_slot_to_allocated
-    self.slot.update_attributes(:is_allocated => 1)
+    slot.update_attributes(:is_allocated => 1)
   end
 
 end

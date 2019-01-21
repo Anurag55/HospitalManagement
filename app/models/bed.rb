@@ -6,6 +6,6 @@ class Bed < ActiveRecord::Base
   after_save :increment_bed_count
 
   def increment_bed_count
-    self.room.update_attributes(:no_of_beds => self.room.beds.count)
+    room.update_attributes(:no_of_beds => room.beds.count)
   end
 end

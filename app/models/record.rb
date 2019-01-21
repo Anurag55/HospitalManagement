@@ -8,9 +8,7 @@ class Record < ActiveRecord::Base
    after_save :update_bed_admit_attributes
 
    def update_bed_admit_attributes
-     self.appointment.admit.update_attributes(:discharged_date => Date.current, :is_discharged => 1)
-     self.appointment.admit.bed.update_attributes(:is_allocated => 0)
+     appointment.admit.update_attributes(:discharged_date => Date.current, :is_discharged => 1)
+     appointment.admit.bed.update_attributes(:is_allocated => 0)
    end
-
-
 end

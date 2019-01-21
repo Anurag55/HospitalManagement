@@ -8,7 +8,6 @@ class CreatePatients < ActiveRecord::Migration
       t.string  :address
       t.string  :gender
       t.integer  :blood_group_id
-      t.string  :photo
 
 
       t.timestamps

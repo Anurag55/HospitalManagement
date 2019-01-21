@@ -15,25 +15,19 @@ class ApplicationController < ActionController::Base
     end
   end
 
+
   def check_user_logged_in
     if current_user==nil
       return
     elsif current_user.profile_type=="Admin"
       redirect_to admins_path
     elsif current_user.profile_type=="Patient"
-      if current_user.profile_created==1
-          redirect_to patients_path
-      else
-          redirect_to new_patient_path
-      end
+      return redirect_to new_patient_path unless current_user.profile_created==1
+      redirect_to patients_path
     elsif current_user.profile_type=="Doctor"
-      if current_user.profile_created==1
-        redirect_to doctors_path
-      else
-          redirect_to new_doctor_path
-      end
+      return redirect_to new_doctor_path unless current_user.profile_created==1
+      redirect_to doctors_path
     end
-
   end
 
   protected

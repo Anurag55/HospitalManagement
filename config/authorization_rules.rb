@@ -17,13 +17,14 @@ authorization do
   role :patient do
 
     has_permission_on :patients, :to=> [:index, :new, :create, :edit, :update, :show, :destroy, :get_appointments, :show_slots, :create_appointment, :show_appointments, :show_profile]
-
+    has_permission_on :users, :to=> [:edit, :update]
   end
 
   role :doctor do
 
     has_permission_on :doctors, :to=>[:index, :new, :create, :edit, :update, :show_appointments, :show_patients, :show_timeslots, :show_slots, :show_profile]
     has_permission_on :medical_records, :to=>[:index, :new, :create, :edit, :update]
+    has_permission_on :users, :to=> [:edit, :update]
 
 
   end
@@ -31,7 +32,6 @@ authorization do
   role :guest do
 
     has_permission_on :users, :to=>[:new, :create]
-
 
   end
 

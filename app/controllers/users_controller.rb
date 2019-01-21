@@ -30,4 +30,18 @@ class UsersController < ApplicationController
 
       end
   end
+
+  def edit
+    @user=User.find(params[:id])
+  end
+
+  def update
+    @user=User.find(params[:id])
+    if @user.update_attributes(params[:user])
+      flash[:notice] = "Profile image updated"
+    else
+      flash[:message] = "Profile image cant update, Try again..."
+    end
+    redirect_to :controller => "sessions", :action => "new"
+  end
 end

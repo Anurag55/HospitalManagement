@@ -39,6 +39,7 @@
 .doctor{
   font-size: 18px;
   color: black;
+  font-family: 'PT Serif', serif;
 }
 
 
@@ -67,4 +68,8 @@
   font-family: sans-serif;
   float: right;
 
+}
+
+.text{
+  text-align: center;
 }

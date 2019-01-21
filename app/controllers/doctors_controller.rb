@@ -50,7 +50,8 @@ class DoctorsController < ApplicationController
   end
 
   def show_profile
-    @doctor=current_user.profile
+    @user=current_user
+    @doctor=@user.profile
   end
 
   def show_appointments
