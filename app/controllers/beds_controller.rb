@@ -28,7 +28,7 @@ class BedsController < ApplicationController
   def show
     @bed=Bed.find(params[:id])
     @room=@bed.room
-    @admit= Admit.first(:conditions => {:bed_id => @bed.id, :is_discharged => 0})
+    @admit= Admit.first(:conditions => { :bed_id => @bed.id, :is_discharged => 0 })
     @appointment= Appointment.find(@admit.appointment_id)
     @patient= Patient.find(@appointment.patient_id)
 

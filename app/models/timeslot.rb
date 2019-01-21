@@ -2,7 +2,14 @@ class Timeslot < ActiveRecord::Base
   has_many :slots, :dependent => :destroy
   belongs_to :doctor
 
-  validates_presence_of :date, :start_time, :end_time, :slot_width, :doctor_id
+  validates_presence_of :start_time, :end_time, :slot_width, :doctor_id
+
+  validate :date_cannot_be_in_the_past
+
+  def date_cannot_be_in_the_past
+    errors.add(:date, "can't be in the past") if
+      !date.blank? and date < Date.today
+  end
 
   def generate_slots
 

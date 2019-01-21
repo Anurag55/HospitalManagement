@@ -1,32 +1,27 @@
 <%= stylesheet_link_tag 'patient' %>
-<div class="slots" class="jumbotron">
-
-<% if @timeslots.present? %>
-
-  <% @timeslots.each do |timeslot| %>
-  <div class="timeslot">
-    </br>
-    <span class="date"> <%= timeslot.start_time.to_date  %></span>&nbsp&nbsp
-    <span class="time"> <%= timeslot.start_time.strftime("%H:%M")  %> </span>&nbsp-
-    <span class="time"> <%= timeslot.end_time.strftime("%H:%M")  %></span></br>
-    <% @doctor=Doctor.find(timeslot.doctor_id) %>
-    <span class="doctor">Doctor--<%= @doctor.first_name %></span></br>
-
-    <%= @slots = timeslot.slots %>
-    <% @slots.each do |slot| %>
+</br>
+<div id="slots" class="jumbotron">
+  <% if @timeslots.present? %>
+    <% @timeslots.each do |timeslot| %>
+    <div class="timeslot">
+      <span class="date"> <%= timeslot.start_time.to_date  %></span>&nbsp&nbsp
+      <span class="time"> <%= timeslot.start_time.strftime("%H:%M")  %> </span>&nbsp-
+      <span class="time"> <%= timeslot.end_time.strftime("%H:%M")  %></span></br>
+      <% @doctor=Doctor.find(timeslot.doctor_id) %>
+      <span class="doctor"><%= @doctor.first_name %></span></br>
+      <%= @slots = timeslot.slots %>
+      <% @slots.each do |slot| %>
         <% if slot.is_allocated==0 %>
-          <%= link_to "#{slot.time.strftime("%H:%M")}", :controller => "patients", :action => "create_appointment", :id=> slot.id, :time => slot.time %>
+          <span class="slot_entry"><%= link_to "#{slot.time.strftime("%H:%M")}", :controller => "patients", :action => "create_appointment", :id=> slot.id%></span>
         <% end %>
+      <% end %>
+    </div>
     <% end %>
-
-  </div>
-  <% end %>
-<% else %>
+  <% else %>
   <p class="unavailable">No available timeslots</p>
-
-<% end %>
-</br></br></br>
-<div class="footer">
-<%= link_to "Go back", get_appointments_patients_path %>|<%= link_to "Go-to Home",patients_path %>
-</div>
+  <% end %>
+  </br></br></br>
+  <div class="footer">
+    <%= link_to "Go back", get_appointments_patients_path %>|<%= link_to "Go-to Home",patients_path %>
+  </div>
 </div>

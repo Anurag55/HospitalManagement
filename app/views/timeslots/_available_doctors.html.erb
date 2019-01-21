@@ -2,7 +2,7 @@
 
   <div class="form-group">
     <label>Select Doctor</label>
-    <%= select :timeslot, :doctor_id, options_for_select(@available_doctors.map {|p| [p.first_name,p.id]}) %>
+    <%= select :timeslot, :doctor_id, options_for_select(@available_doctors.map {|p| [p.first_name,p.id]}), { :include_blank => true } %>
     <%#= text_field :timeslot, :docter_id  %>
   </div>
 

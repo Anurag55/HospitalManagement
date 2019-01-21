@@ -55,7 +55,8 @@ class PatientsController < ApplicationController
   end
 
   def show_appointments
-
+    @patient=current_user.profile
+    @appointments=@patient.appointments
   end
 
   def get_appointments
@@ -63,9 +64,8 @@ class PatientsController < ApplicationController
   end
 
   def show_slots
-    @doctors= Doctor.all(:conditions => {:department_id => params[:department][:id]})
-    date=params["post"]["date"]
-    @timeslots = Timeslot.all(:conditions => {:date => Date.civil(*params["post"].sort.map(&:last).map(&:to_i)), :doctor_id => @doctors.collect(&:id)})
+    @doctors= Department.find(params[:department][:id]).doctors
+    @timeslots = Timeslot.all(:conditions => {:date => Date.civil(*params["appointment"].sort.map(&:last).map(&:to_i)), :doctor_id => @doctors.collect(&:id)})
   end
 
 
@@ -73,9 +73,8 @@ class PatientsController < ApplicationController
     @user=current_user
     @slot=Slot.find(params[:id])
     @timeslot=@slot.timeslot
-    @appointment= Appointment.new(:slot_id => params[:id], :time => params[:time], :doctor_id => @slot.timeslot.doctor_id, :patient_id => @user.profile_id)
+    @appointment= Appointment.new(:slot_id => params[:id], :time => @slot.time, :doctor_id => @slot.timeslot.doctor_id, :patient_id => @user.profile_id)
     if @appointment.save
-      UserMailer.deliver_appointment_email(@user,@appointment)
       flash[:notice] = "Appointment taken Successfully..."
       redirect_to patients_path
     else

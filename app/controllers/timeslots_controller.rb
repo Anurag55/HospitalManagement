@@ -13,14 +13,14 @@ class TimeslotsController < ApplicationController
 
   end
 
-  def create#TODO
+  def create
     @timeslot= Timeslot.new(params[:timeslot])
     if @timeslot.update_attributes(:date => @timeslot.start_time.to_date)
       @timeslot.generate_slots
       flash[:notice] = "Timeslot Successfully created..."
       redirect_to timeslots_path
     else
-      flash[:notice] = "Unable to create timeslots"
+      flash[:notice] = "Unable to create timeslots, Select valid datetime"
       redirect_to new_timeslot_path
     end
 
@@ -33,8 +33,7 @@ class TimeslotsController < ApplicationController
 
 
   def list_doctors
-    department_id=params[:department_id]
-    @available_doctors= Doctor.find(:all, :conditions => {:department_id => department_id})
+    @available_doctors= Department.find(params[:department_id]).doctors
     @timeslot=Timeslot.new
     render :update do |page|
       page.replace_html 'available_doctors' ,:partial =>'available_doctors'

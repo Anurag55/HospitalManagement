@@ -24,12 +24,12 @@ class AdmitsController < ApplicationController
   end
 
   def discharge_patient_form
-    @admits=Admit.all(:conditions => {:is_discharged => 0})
+    @admits=Admit.all(:conditions => { :is_discharged => 0 })
 
   end
 
   def list_beds
-    @available_beds= Bed.all(:conditions => {:room_id => params[:room_id], :is_allocated => 0})
+    @available_beds= Bed.all(:conditions => { :room_id => params[:room_id], :is_allocated => 0 })
     @admit=Admit.new
     render :update do |page|
       page.replace_html 'available_beds' ,:partial =>'available_beds'

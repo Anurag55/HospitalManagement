@@ -3,7 +3,6 @@ class User < ActiveRecord::Base
 
   validates_presence_of  :username, :email, :contact_number
   validates_uniqueness_of :email
-  has_many :roles
   def role_symbols
       return self.profile_type.underscore.to_sym.to_a
   end

@@ -1,38 +1,25 @@
 <%= stylesheet_link_tag 'patient' %>
-<div id="container" class="jumbotron">
+</br>
+<div id="profile" class="jumbotron">
 <%= link_to "Update profile", edit_patient_path(@patient) %>
+</br></br>
+<%= image_tag @patient.user.avatar.url(:thumb), :class => "profile_image" %></br>
+<span class="label">Name</span>
+<span class="value">
+  <%= @patient.first_name %>
+  <%= @patient.middle_name%>
+  <%= @patient.last_name%>
+</span></br>
+<span class="label">Date of Birth</span>
+<span class="value"><%= @patient.date_of_birth%></span></br>
+<span class="label">Address</span>
+<span class="value"><%= @patient.address%></span></br>
+<span class="label">Gender</span>
+<span class="value"><%= @patient.gender%></span></br>
+<span class="label">Blood Group</span>
+<span class="value"><%=BloodGroup.find(@patient.blood_group_id).name%></span></br>
 </br></br></br>
-
-<table id="table" class="table table-striped">
-<thead>
-<tr>
-  <th> First Name </th>
-  <th> Middle Name </th>
-  <th> Last Name </th>
-  <th> Date of Birth </th>
-  <th> Address </th>
-  <th> Gender </th>
-  <th> Blood Group </th>
-</tr>
-</thead>
-<tbody>
-    <tr>
-      <!-- <%= image_tag @patient.user.avatar.url(:thumb) %> -->
-      <td><%= @patient.first_name %></td>
-      <td><%= @patient.middle_name%></td>
-      <td><%= @patient.last_name%></td>
-      <td><%= @patient.date_of_birth%></td>
-      <td><%= @patient.address%></td>
-      <td><%= @patient.gender%></td>
-      <td><%=BloodGroup.find(@patient.blood_group_id).name%></td>
-    </tr>
-
-
-</tbody>
-</table>
-
-</br></br></br>
-<div class="footer">
-<%= link_to "Go back", patients_path %>|<%= link_to "Go-to Home", patients_path %>
-</div>
+  <div class="footer">
+    <%= link_to "Go back", patients_path %>|<%= link_to "Go-to Home", patients_path %>
+  </div>
 </div>

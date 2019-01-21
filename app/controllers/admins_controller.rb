@@ -1,13 +1,11 @@
 require 'wicked_pdf'
-
 class AdminsController < ApplicationController
 
   filter_access_to :all
 
   def index
-    
-  end
 
+  end
 
   def show_patients
       @patients=Patient.all
