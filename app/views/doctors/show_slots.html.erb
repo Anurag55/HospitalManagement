@@ -1,37 +1,33 @@
 <%= stylesheet_link_tag 'doctor' %>
 <div id="container" class="jumbotron">
 
-<table id="table" class="table table-striped">
-<thead>
-  <tr>
-
-  <th> Number </th>
-  <th> Date </th>
-  <th> Time </th>
-  <th> Allocation status </th>
-
-
-
-</tr>
-</thead>
-<tbody>
-<% @slots.each do |slot| %>
-
-    <tr>
-      <td><%= h slot.number %></td>
-      <td><%= h slot.time.to_date %></td>
-      <td><%= h slot.time.strftime("%H:%M") %></td>
-      <% if slot.is_allocated==1  %>
-        <td>Allocated</td>
-      <% else %>
-        <td>Free</td>
-      <% end %>
+  <table id="table" class="table table-striped">
+    <thead>
+      <tr>
+      <th> Number </th>
+      <th> Date </th>
+      <th> Time </th>
+      <th> Allocation status </th>
     </tr>
+    </thead>
+    <tbody>
+    <% @slots.each do |slot| %>
 
-<% end %>
+        <tr>
+          <td><%= h slot.number %></td>
+          <td><%= h slot.time.to_date %></td>
+          <td><%= h slot.time.strftime("%H:%M") %></td>
+          <% if slot.is_allocated==1  %>
+            <td>Allocated</td>
+          <% else %>
+            <td>Free</td>
+          <% end %>
+        </tr>
 
-</tbody>
-</table>
+    <% end %>
+
+    </tbody>
+  </table>
 
 </br></br></br>
 <div class="footer">

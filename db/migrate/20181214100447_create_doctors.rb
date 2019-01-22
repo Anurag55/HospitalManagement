@@ -6,11 +6,11 @@ class CreateDoctors < ActiveRecord::Migration
       t.string  :last_name
       t.date    :date_of_birth
       t.string  :address
-      t.integer  :nationality_id
       t.string  :gender
       t.string :qualification
       t.string  :experience
       t.references :department
+      t.references :country
       t.timestamps
     end
   end

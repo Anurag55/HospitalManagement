@@ -14,20 +14,19 @@ class UsersController < ApplicationController
       if params[:user][:is_doctor] == "1"
         @user.profile_type= "Doctor"
         if @user.save
+          flash[:message] = "Created doctor successfully"
           redirect_to admins_path
         else
-          flash[:notice] = "Email already registered..."
-          redirect_to new_user_path
+          render :new
         end
       else
         @user.profile_type= "Patient"
         if @user.save
+          flash[:message] = "Created user successfully"
           redirect_to :controller => "sessions", :action => "new"
         else
-          flash[:notice] = "Email already registered..."
-          redirect_to new_user_path
+          render :new
         end
-
       end
   end
 

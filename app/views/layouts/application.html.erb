@@ -7,15 +7,13 @@
   <title><%= controller.action_name %></title>
   <%= stylesheet_link_tag 'application' %>
   <%= stylesheet_link_tag 'bootstrap' %>
-<link href="https://fonts.googleapis.com/css?family=PT+Serif" rel="stylesheet"> 
+<link href="https://fonts.googleapis.com/css?family=PT+Serif" rel="stylesheet">
 
   <%= javascript_include_tag :all %>
 
 
 </head>
 <body id="body">
-
-<p style="color: green"><%= notice %></p>
 
   <div class="topnav">
     <%= link_to "ABC HOSPITAL", { :controller => "sessions", :action => "new" } ,{ :class => "home_icon" } %>
@@ -29,8 +27,9 @@
       <% end %>
   </div>
 <div id="content">
+  <p style="color: green"><%= notice %></p>
 
-<%= yield %>
+  <%= yield %>
 
 </div>
 

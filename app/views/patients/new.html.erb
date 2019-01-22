@@ -33,11 +33,6 @@
     <%= f.label (:blood_group, "Blood group") %>
     <%= f.collection_select :blood_group_id, BloodGroup.all, :id, :name, :include_blank => true, :class => 'form-control' %>
   </div>
-  <!-- <div class="form-group">
-    <%= f.label (:photo, "Photo") %>
-    <%= f.text_field (:photo, :class => 'form-control') %>
-  </div> -->
-
   <%= f.submit 'Register', :class => 'btn btn-large btn-primary' %>
 
 <% end %>

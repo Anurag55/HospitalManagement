@@ -4,7 +4,8 @@
   <p id="heading"> Register Here</p>
   <% form_for(@user, :html => { :multipart => true }) do |f| %>
     <%= f.error_messages %>
-    <%= f.hidden_field :confirmed  %>
+    <%= f.hidden_field :confirmed , :value => 0 %>
+    <%= f.hidden_field :confirmation_token , :value => SecureRandom.hex(10) %>
     <%= f.hidden_field :is_doctor, :value => params[:is_doctor]  %>
     <div class="form-group">
         <%= f.label(:email, "E-mail") %>

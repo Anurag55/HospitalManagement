@@ -19,14 +19,11 @@
 
     <tr>
       <td><%= h appointment.id %></td>
-      <% @patient = Patient.find(appointment.patient_id) %>
-      <td><%= h @patient.first_name %></td>
+      <td><%= h appointment.patient.first_name %></td>
       <td><%= h appointment.time.to_date %></td>
       <td><%= h appointment.time.strftime("%H:%M") %></td>
-      <% @doctor = Doctor.find(appointment.doctor_id) %>
-      <% @department = Department.find(@doctor.department_id) %>
-      <td><%= h @doctor.first_name %></td>
-      <td><%= h @department.name %></td>
+      <td><%= h appointment.doctor.first_name %></td>
+      <td><%= h appointment.doctor.department.name %></td>
     </tr>
 
 <% end %>

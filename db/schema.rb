@@ -72,14 +72,13 @@ ActiveRecord::Schema.define(:version => 20190118053613) do
     t.string   "first_name"
     t.string   "middle_name"
     t.string   "last_name"
-    t.string   "photo"
     t.date     "date_of_birth"
     t.string   "address"
-    t.integer  "nationality_id"
     t.string   "gender"
     t.string   "qualification"
     t.string   "experience"
     t.integer  "department_id"
+    t.integer  "country_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -103,7 +102,6 @@ ActiveRecord::Schema.define(:version => 20190118053613) do
     t.string   "address"
     t.string   "gender"
     t.integer  "blood_group_id"
-    t.string   "photo"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

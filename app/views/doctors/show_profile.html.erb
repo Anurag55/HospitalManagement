@@ -4,7 +4,7 @@
   <%= link_to "Update profile", edit_doctor_path(@doctor) %>
 </br></br>
   <%= image_tag @doctor.user.avatar.url(:thumb), :class => "profile_image" %></br>
-  <p class="text"><%= link_to "Change image", edit_user_path(@user) %></p></br>
+  <p class="text"><%= link_to "Change image", edit_user_path(@doctor.user) %></p></br>
   <span class="label">Name</span>
   <span class="value">
   <%= h @doctor.first_name %>
@@ -16,7 +16,7 @@
   <span class="label">Address</span>
   <span class="value"><%= h @doctor.address%></span></br>
   <span class="label">Nationality</span>
-  <span class="value"><%= h Country.find(@doctor.nationality_id).name%></span></br>
+  <span class="value"><%= h @doctor.country.name%></span></br>
   <span class="label">Gender</span>
   <span class="value"><%= h @doctor.gender%></span></br>
   <span class="label">Qualification</span>

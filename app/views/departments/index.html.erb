@@ -6,29 +6,24 @@
 
 
 <table id="table" class="table table-striped">
-<thead>
-  <tr>
-
-  <th> Number </th>
-  <th> Name </th>
-  <th> Description </th>
-
-
-</tr>
-</thead>
-<tbody>
-<% @departments.each do |department| %>
-
+  <thead>
     <tr>
-      <td><%= h department.id %></td>
-      <td><%= h department.name %></td>
-      <td><%= h department.details %></td>
-      <td><%= link_to "delete" , department, :confirm => 'Are you sure?', :method => :delete %></td>
+      <th> Number </th>
+      <th> Name </th>
+      <th> Description </th>
     </tr>
+  </thead>
+  <tbody>
+  <% @departments.each do |department| %>
 
-<% end %>
-
-</tbody>
+      <tr>
+        <td><%= h department.id %></td>
+        <td><%= h department.name %></td>
+        <td><%= h department.details %></td>
+        <td><%= link_to "delete" , department, :confirm => 'Are you sure?', :method => :delete %></td>
+      </tr>
+  <% end %>
+  </tbody>
 </table>
 
 </br></br></br>

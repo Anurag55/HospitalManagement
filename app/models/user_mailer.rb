@@ -5,7 +5,7 @@ class UserMailer < ActionMailer::Base
   from          "My Awesome Site Notifications <anuragmpayam@gmail.com>"
   subject       "Welcome to abc hospital"
   sent_on       Time.now
-  body          :user => user, :url => "http://localhost:3000/sessions/"
+  body          :user => user, :url => "http://localhost:3000/sessions/confirmation?token="+user.confirmation_token
   end
 
   def reset_email(user)

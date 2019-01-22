@@ -16,7 +16,6 @@ class TimeslotsController < ApplicationController
   def create
     @timeslot= Timeslot.new(params[:timeslot])
     if @timeslot.update_attributes(:date => @timeslot.start_time.to_date)
-      @timeslot.generate_slots
       flash[:notice] = "Timeslot Successfully created..."
       redirect_to timeslots_path
     else

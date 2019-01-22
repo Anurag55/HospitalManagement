@@ -3,11 +3,13 @@
 <div id="form" class="jumbotron">
   <p id="heading"> Edit Room</p>
   <% form_for(@room, :html => {:class => "form"}) do |f| %>
+    <%= f.error_messages %>
+
     <div class="form-group">
       <%= f.label (:number, "Number") %>
       <%= f.text_field (:number, :class => 'form-control') %>
     </div>
-    <%= f.submit 'Create', :class => 'btn btn-large btn-primary' %>
+    <%= f.submit 'Update', :class => 'btn btn-large btn-primary' %>
 
   <% end %>
 </br></br>

@@ -26,9 +26,8 @@
         <td><%= h appointment.id %></td>
         <td><%= h appointment.time.to_date %></td>
         <td><%= h appointment.time.strftime("%H:%M") %></td>
-        <% @doctor=Doctor.find(appointment.doctor_id) %>
-        <td><%= h @doctor.first_name %></td>
-        <td><%= h Department.find(@doctor.department_id).name %></td>
+        <td><%= h appointment.doctor.first_name %></td>
+        <td><%= h appointment.doctor.department.name %></td>
         <% if appointment.record.present? %>
           <% record=appointment.record %>
           <td> <%= link_to "Download discharge report", record.file.url(:original, false) %> </td>

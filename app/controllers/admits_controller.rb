@@ -3,7 +3,6 @@ class AdmitsController < ApplicationController
   filter_access_to :all
 
   def index
-
   end
 
   def new
@@ -18,8 +17,7 @@ class AdmitsController < ApplicationController
       flash[:notice] = "Patient Successfully admitted..."
       redirect_to show_patientrecords_admins_path
     else
-      flash[:notice] = "Unable to admitt Patient , try again..."
-      redirect_to new_medical_records_path
+      render :new
     end
   end
 

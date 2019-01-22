@@ -7,32 +7,28 @@
 
 
 <table id="table" class="table table-striped">
-<thead>
-  <tr>
-
-  <th> Number </th>
-  <th> No of beds </th>
-
-
-
-</tr>
-</thead>
-<tbody>
-<% @rooms.each do |room| %>
-
+  <thead>
     <tr>
-      <td><%= h room.number %></td>
-      <td><%= h room.no_of_beds %></td>
-      <td><%= link_to "View", room %></td>
-      <td><%= link_to "edit", edit_room_path(room) %></td>
-      <td><%= link_to "delete", room, :method => :delete %></td>
-
-
+    <th> Number </th>
+    <th> No of beds </th>
     </tr>
+  </thead>
+  <tbody>
+  <% @rooms.each do |room| %>
 
-<% end %>
+      <tr>
+        <td><%= h room.number %></td>
+        <td><%= h room.no_of_beds %></td>
+        <td><%= link_to "View", room %></td>
+        <td><%= link_to "edit", edit_room_path(room) %></td>
+        <td><%= link_to "delete", room, :method => :delete %></td>
 
-</tbody>
+
+      </tr>
+
+  <% end %>
+
+  </tbody>
 </table>
 
 </br></br></br>

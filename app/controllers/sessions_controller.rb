@@ -1,3 +1,4 @@
+require 'digest/sha1'
 class SessionsController < ApplicationController
 
 
@@ -7,15 +8,23 @@ class SessionsController < ApplicationController
 
   def create
 
-    @user=User.find(:first, :conditions => {:username => params[:username], :password => params[:password] } )
+    @user=User.find(:first, :conditions => { :username => params[:username] } )
     if @user.nil?
-      redirect_to new_user_path
-    elsif @user.confirmed=='0'
-       flash[:notice] = "User not confirmed yet"
-       redirect_to :action => "new"
+      flash[:notice] = "No such user exists"
+      render :new
     else
-      session[:current_user_id] = @user.id
-      check_user_logged_in
+      hashed_password=@user.password
+      hash=Digest::SHA1.hexdigest(params[:password])
+      if hash != hashed_password
+        flash[:notice] = "Incorrect password"
+        redirect_to new_user_path
+      elsif @user.confirmed=='0'
+         flash[:notice] = "User not confirmed yet"
+         redirect_to :action => "new"
+      else
+        session[:current_user_id] = @user.id
+        check_user_logged_in
+      end
     end
   end
 
@@ -35,7 +44,6 @@ class SessionsController < ApplicationController
       redirect_to :action => "new"
     end
   end
-
   def forgot_password_form
     if current_user.nil?
       render :action => "forgot_password_form"
@@ -44,11 +52,12 @@ class SessionsController < ApplicationController
     end
   end
 
+
   def reset_password_confirmation
-    @user=User.first(:conditions => {:email => params[:email] } )
+    @user=User.first(:conditions => {:email => params[:email] })
     if @user.nil?
       flash[:notice] = "No such user exists"
-      redirect_to :action => "forgot_password_form"
+      redirect_to :controller =>"users", :action => "new"
     else
       @user.update_attributes(:reset_token => SecureRandom.hex(10))
       UserMailer.deliver_reset_email(@user)

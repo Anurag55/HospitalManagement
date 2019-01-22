@@ -14,7 +14,7 @@ require 'active_record/fixtures'
 end
 
 Country.delete_all
-open("/home/foradian/assignment/test2/HospitalManagement/db/country_list.txt") do |countries|
+open("/home/foradian/Documents/Assignments/R-O-Rails/HospitalManagement/db/country_list.txt") do |countries|
   countries.read.each_line do |country|
     code, name = country.chomp.split("|")
     Country.create!(:name => name, :code => code)

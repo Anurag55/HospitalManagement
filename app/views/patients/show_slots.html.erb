@@ -7,8 +7,7 @@
       <span class="date"> <%= timeslot.start_time.to_date  %></span>&nbsp&nbsp
       <span class="time"> <%= timeslot.start_time.strftime("%H:%M")  %> </span>&nbsp-
       <span class="time"> <%= timeslot.end_time.strftime("%H:%M")  %></span></br>
-      <% @doctor=Doctor.find(timeslot.doctor_id) %>
-      <span class="doctor"><%= @doctor.first_name %></span></br></br>
+      <span class="doctor"><%= timeslot.doctor.first_name %></span></br></br>
       <% @slots = timeslot.slots %>
       <% @slots.each do |slot| %>
         <% if slot.is_allocated==0 %>

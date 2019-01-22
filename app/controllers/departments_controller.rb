@@ -16,8 +16,7 @@ class DepartmentsController < ApplicationController
       flash[:notice] = "Department created..."
       redirect_to departments_path
     else
-      flash[:notice] = "Unable to create department, Try again..."
-      redirect_to new_departments_path
+      render :new
     end
   end
 

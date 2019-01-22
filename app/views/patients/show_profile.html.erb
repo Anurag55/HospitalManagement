@@ -4,7 +4,7 @@
 <%= link_to "Update profile", edit_patient_path(@patient) %>
 </br></br>
 <%= image_tag @patient.user.avatar.url(:thumb), :class => "profile_image" %></br>
-<p class="text"><%= link_to "Change image", edit_user_path(@user) %></p></br>
+<p class="text"><%= link_to "Change image", edit_user_path(@patient.user) %></p></br>
 <span class="label">Name</span>
 <span class="value">
   <%= @patient.first_name %>
@@ -18,7 +18,7 @@
 <span class="label">Gender</span>
 <span class="value"><%= @patient.gender%></span></br>
 <span class="label">Blood Group</span>
-<span class="value"><%=BloodGroup.find(@patient.blood_group_id).name%></span></br>
+<span class="value"><%=@patient.blood_group.name%></span></br>
 </br></br></br>
   <div class="footer">
     <%= link_to "Go back", patients_path %>|<%= link_to "Go-to Home", patients_path %>

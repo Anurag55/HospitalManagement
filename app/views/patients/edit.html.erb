@@ -3,6 +3,7 @@
 <div id="form" class="jumbotron">
 <p id="heading"> Update your profile</p>
 <% form_for(@patient, :html => {:class => "form"}) do |f| %>
+  <%= f.error_messages %>
 
   <div class="form-group">
     <%= f.label (:first_name, "First Name") %>
@@ -32,12 +33,8 @@
     <%= f.label (:blood_group, "Blood group") %>
     <%= f.collection_select :blood_group_id, BloodGroup.all, :id, :name, :include_blank => true, :class => 'form-control' %>
   </div>
-  <!-- <div class="form-group">
-    <%= f.label (:photo, "Photo") %>
-    <%= f.text_field (:photo, :class => 'form-control') %>
-  </div> -->
 
-  <%= f.submit 'Register', :class => 'btn btn-large btn-primary' %>
+  <%= f.submit 'Update', :class => 'btn btn-large btn-primary' %>
 
 <% end %>
 </div>

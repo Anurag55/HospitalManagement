@@ -7,9 +7,7 @@ class CreatePatients < ActiveRecord::Migration
       t.date    :date_of_birth
       t.string  :address
       t.string  :gender
-      t.integer  :blood_group_id
-
-
+      t.references :blood_group
       t.timestamps
     end
   end

@@ -12,10 +12,8 @@ class RecordsController < ApplicationController
       flash[:notice] = "Patient discharged..."
       redirect_to admins_path
     else
-      flash[:notice] = "Can't discharge patient.Try again..."
-      redirect_to discharge_patient_form_admits_path
+      render :new
     end
-
-
+    
   end
 end

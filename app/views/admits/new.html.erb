@@ -5,16 +5,16 @@
 <p id="heading">Assign bed</p>
 <% form_tag({:controller => "admits", :action => "create"}) do -%>
 
-<%= hidden_field_tag :record_id, params[:record_id] %>
+  <%= hidden_field_tag :record_id, params[:record_id] %>
 
-<div class="form-group">
-  <label>Select Room</label>
-  <%= collection_select(:room, :id, Room.all, :id, :number, {:prompt => "select Room"}, { :onchange => "list_beds(this.value);" })%>
-</div>
+  <div class="form-group">
+    <label>Select Room</label>
+    <%= collection_select(:room, :id, Room.all, :id, :number, {:prompt => "select Room"}, { :onchange => "list_beds(this.value);" })%>
+  </div>
 
-<div id="available_beds" class="form-group">
-  <!-- render _available_beds.html.erb -->
-</div>
+  <div id="available_beds" class="form-group">
+    <!-- render _available_beds.html.erb -->
+  </div>
 
 <% end %>
 </br></br>

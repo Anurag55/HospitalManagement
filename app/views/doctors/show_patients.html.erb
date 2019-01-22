@@ -22,7 +22,7 @@
         <td><%= h patient.date_of_birth%></td>
         <td><%= h patient.address%></td>
         <td><%= h patient.gender%></td>
-        <td><%= h BloodGroup.find(patient.blood_group_id).name%></td>
+        <td><%= h patient.blood_group.name%></td>
 
 
       </tr>

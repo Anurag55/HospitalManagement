@@ -1,6 +1,8 @@
 class PatientsController < ApplicationController
 
   filter_access_to :all
+  before_filter :find_patient,
+        :only => [:edit, :update, :destroy]
 
   def index
 
@@ -12,36 +14,30 @@ class PatientsController < ApplicationController
   end
 
   def create
-    @user=current_user
-    @user.profile = Patient.new(params[:patient])
-    @patient = @user.profile
+    @patient = Patient.new(params[:patient])
     if @patient.save
       flash[:notice] = "Created profile Successfully..."
-      @user.update_profile
+      current_user.update_profile @patient
       redirect_to patients_path
     else
-      flash[:notice] = "Unable to create profile,Try again..."
-      redirect_to new_patient_path
+      render :new
     end
   end
 
   def edit
-    @patient=Patient.find(params[:id])
   end
 
   def update
-    @patient=Patient.find(params[:id])
     if @patient.update_attributes(params[:patient])
       flash[:notice] = "Profile Successfully updated..."
+      redirect_to :controller => "sessions", :action => "new"
     else
-      flash[:notice] = "Profile could not updated, Try again..."
+      render :edit
     end
-    redirect_to :controller => "sessions", :action => "new"
   end
 
 
   def destroy
-    @patient=Patient.find(params[:id])
     if @patient.destroy
       flash[:message] = "Patient deleted"
     else
@@ -51,13 +47,12 @@ class PatientsController < ApplicationController
   end
 
   def show_profile
-    @user=current_user
-    @patient=@user.profile
+    @patient = current_user.profile
   end
 
   def show_appointments
-    @patient=current_user.profile
-    @appointments=@patient.appointments
+    @patient = current_user.profile
+    @appointments = @patient.appointments
   end
 
   def get_appointments
@@ -72,12 +67,9 @@ class PatientsController < ApplicationController
     end
   end
 
-
   def create_appointment
-    @user=current_user
     @slot=Slot.find(params[:id])
-    @timeslot=@slot.timeslot
-    @appointment= Appointment.new(:slot_id => params[:id], :time => @slot.time, :doctor_id => @slot.timeslot.doctor_id, :patient_id => @user.profile_id)
+    @appointment= Appointment.new(:slot_id => params[:id], :time => @slot.time, :doctor_id => @slot.timeslot.doctor_id, :patient_id => current_user.profile_id)
     if @appointment.save
       flash[:notice] = "Appointment taken Successfully..."
       redirect_to patients_path
@@ -85,6 +77,10 @@ class PatientsController < ApplicationController
       flash[:notice] = "Appointment couldnt be taken, Try once again"
       redirect_to get_appointments_patients_path
     end
+  end
+
+  def find_patient
+    @patient=Patient.find(params[:id])
   end
 
 end

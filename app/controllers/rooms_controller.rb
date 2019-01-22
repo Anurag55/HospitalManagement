@@ -1,6 +1,6 @@
 class RoomsController < ApplicationController
   filter_access_to :all
-  
+
   before_filter :find_room,
         :only => [:show, :edit, :update, :destroy]
 
@@ -9,7 +9,7 @@ class RoomsController < ApplicationController
       @rooms=Room.all
       respond_to do |format|
         format.html
-        format.csv {send_data Room.to_csv, :type => 'text/csv; charset=iso-8859-1; header=present', :disposition => "attachment; filename=Bed_availability_in_rooms.csv"}
+        format.csv {send_data Room.room_utilization, :type => 'text/csv; charset=iso-8859-1; header=present', :disposition => "attachment; filename=Bed_availability_in_rooms.csv"}
       end
   end
 
@@ -28,7 +28,7 @@ class RoomsController < ApplicationController
     if @room.save
       redirect_to rooms_path
     else
-      redirect_to new_room_path
+      render :new
     end
   end
 
@@ -36,7 +36,7 @@ class RoomsController < ApplicationController
     if @room.update_attributes(params[:room])
       redirect_to rooms_path
     else
-      redirect_to edit_room_path
+      render :edit
     end
   end
 
@@ -48,6 +48,7 @@ class RoomsController < ApplicationController
     end
   end
 
+  private
   def find_room
     @room=Room.find(params[:id])
   end

@@ -4,6 +4,7 @@
   <p id="heading"> Login Here</p>
   </br>
   <% form_tag({:action => "create"}, :class => "form" )  do  %>
+
     <div class="form-group">
       <%= label_tag(:username, "Username") %>
       <%= text_field_tag(:username, params[:username], :class => 'form-control') %>

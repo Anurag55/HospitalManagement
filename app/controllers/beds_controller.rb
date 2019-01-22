@@ -19,7 +19,6 @@ class BedsController < ApplicationController
       flash[:notice]= "bed created"
       redirect_to @room
     else
-      flash[:notice] = "Bed creation failed, Try again..."
       render :action => "new"
     end
 
@@ -36,8 +35,6 @@ class BedsController < ApplicationController
 
   def edit
     @bed = @room.beds.find(params[:id])
-
-
   end
 
   def update
@@ -46,8 +43,7 @@ class BedsController < ApplicationController
       redirect_to @room
       flash[:notice] = "Bed updated Successfully..."
     else
-      flash[:notice] = "Bed update failed,Try again..."
-      redirect_to edit_room
+      render :edit
     end
   end
 
@@ -59,7 +55,6 @@ class BedsController < ApplicationController
       flash[:notice] = "Bed couldnt deleted, Try again..."
     end
     redirect_to @room
-
   end
 
   def find_room

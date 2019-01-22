@@ -1,10 +1,10 @@
 class DoctorsController < ApplicationController
 
   filter_access_to :all
+  before_filter :find_doctor,
+        :only => [:edit, :update, :destroy]
 
   def index
-
-
   end
 
   def new
@@ -12,35 +12,29 @@ class DoctorsController < ApplicationController
   end
 
   def create
-    @user=current_user
-    @user.profile = Doctor.new(params[:doctor])
-    @doctor = @user.profile
+    @doctor = Doctor.new(params[:doctor])
     if @doctor.save
       flash[:notice] = "Created profile Successfully..."
-      @user.update_profile
+      current_user.update_profile @doctor
       redirect_to doctors_path
     else
-      flash[:notice] = "Unable to create profile,Try again..."
-      redirect_to new_doctor_path
+      render :new
     end
   end
 
   def edit
-    @doctor=Doctor.find(params[:id])
   end
 
   def update
-    @doctor=Doctor.find(params[:id])
     if @doctor.update_attributes(params[:doctor])
       flash[:notice] = "Profile Successfully updated..."
+      redirect_to :controller => "sessions", :action => "new"
     else
-      flash[:notice] = "Profile could not updated, Try again..."
+      render :edit
     end
-    redirect_to :controller => "sessions", :action => "new"
   end
 
   def destroy
-    @doctor=Doctor.find(params[:id])
     if @doctor.destroy
       flash[:message] = "Doctor deleted"
     else
@@ -50,8 +44,7 @@ class DoctorsController < ApplicationController
   end
 
   def show_profile
-    @user=current_user
-    @doctor=@user.profile
+    @doctor=current_user.profile
   end
 
   def show_appointments
@@ -70,7 +63,10 @@ class DoctorsController < ApplicationController
   def show_slots
     @timeslot=Timeslot.find(params[:id])
     @slots=@timeslot.slots
-
   end
-
+  
+  private
+  def find_doctor
+    @doctor=Doctor.find(params[:id])
+  end
 end

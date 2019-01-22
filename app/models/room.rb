@@ -4,7 +4,7 @@ class Room < ActiveRecord::Base
 
   validates_presence_of :number
 
-  def self.to_csv
+  def self.room_utilization
     @rooms=Room.all
     FasterCSV.generate do |csv|
       csv << ["number", "total no of beds", ]
